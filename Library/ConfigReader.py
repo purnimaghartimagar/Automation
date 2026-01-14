@@ -1,12 +1,10 @@
-import configparser
+import os
+from configparser import ConfigParser
 
-def configRead(section,key):
-    config=configparser.ConfigParser()
-    config.read('../ConfigurationFiles/Config.cfg')
-    return config.get(section,key)
-print(configRead('Details','APP_URL'))
+# Get the path of the directory where ConfigReader.py is located
+base_path = os.path.dirname(__file__)
+# Go up one level or point to the exact location of your config file
+config_file_path = os.path.join(base_path, '..', 'Configuration', 'config.ini') 
 
-def ElementsRead(section,key):
-    config=configparser.ConfigParser()
-    config.read('../ConfigurationFiles/Elements.cfg')
-    return config.get(section,key)
+config = ConfigParser()
+config.read(config_file_path)
