@@ -1,10 +1,15 @@
+import configparser
 import os
-from configparser import ConfigParser
 
-# Get the path of the directory where ConfigReader.py is located
-base_path = os.path.dirname(__file__)
-# Go up one level or point to the exact location of your config file
-config_file_path = os.path.join(base_path, '..', 'Configuration', 'config.ini') 
-
-config = ConfigParser()
-config.read(config_file_path)
+def read_config_data(section, key):
+    config = configparser.ConfigParser()
+    
+    # This line finds exactly where this script is located
+    current_dir = os.path.dirname(__file__)
+    
+    # This line points to the config file relative to this script
+    # Adjust "../Config.ini" to match where your file actually is
+    file_path = os.path.join(current_dir, '../Configuration/Config.ini')
+    
+    config.read(file_path)
+    return config.get(section, key)
